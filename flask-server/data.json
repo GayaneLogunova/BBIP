@@ -1,0 +1,39 @@
+{
+    "task1": {
+        "state": "done",
+        "text": "Go to the Supermarket",
+        "who": "Professor",
+        "time_limit": "18:00"
+    },
+    "task2": {
+        "state": "done",
+        "text": "Go to the GYM",
+        "who": "Student",
+        "time_limit": "20:00"
+    },        
+    "task3": {
+        "state": "done",
+        "text": "Go to the kindergarden",
+        "who": "mum",
+        "time_limit": "16:00"
+    },
+    "task4": {
+        "state": "pending",
+        "text": "Do homework",
+        "who": "Student",
+        "time_limit": "22:00"
+    },
+    "task5": {
+        "state": "done",
+        "text": "Go to bed",
+        "who": "Professor",
+        "time_limit":"22:00"
+    },
+    "task6": {
+        "state": "failed",
+        "text": "Buy a skirt", 
+        "who": "mum",
+        "time_limit": "16:00"
+        
+    }
+}
