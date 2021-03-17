@@ -5,17 +5,16 @@ import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import { Grid } from '@material-ui/core';
 
-import Card from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import GridLayout from 'react-grid-layout';
-
+import Main from "./Main";
 
 export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {isLoad: false, data: "", quant: 0, tasks: [["failed", "tasks", "18:00", "professor"]], done_tasks: [["done", "hi", "hello"],], pending_tasks: [["pending", "hi", "hello"]], failed_tasks: [["failed", "hi", "hello"]], index: -1}
+    this.state = {isLoad: false, data: "", quant: 0, render_tasks: [["failed", "tasks", "18:00", "professor"]], tasks: [["failed", "tasks", "18:00", "professor"]], done_tasks: [["done", "hi", "hello"],], pending_tasks: [["pending", "hi", "hello"]], failed_tasks: [["failed", "hi", "hello"]], index: -1}
     this.getFile = this.getFile.bind(this);
   }
 
@@ -55,6 +54,8 @@ export default class App extends React.Component {
     this.classificator();
   };
 
+  //кладет все такси в разные массивы исходя из состояния готовности
+  //возможно это не надо и достаточно сортировки при первом запуске
   classificator() {
     var d_count = 0;
     var p_count = 0;
@@ -90,9 +91,32 @@ export default class App extends React.Component {
     }
   }
 
+ //обЪединяется все ткси в один массив в остортироаннам порядке, вызывается один раз в день в начале
+  merger() {
+    this.setState({render_tasks: this.state.done_tasks});
+    for (var i = 0; i < this.state.pending_tasks.length; i++) {
+      var arr = this.state.render_tasks;
+      arr.push([]);
+      arr[arr.length - 1] = this.state.pending_tasks[i];
+      this.setState({render_tasks: arr});
+    }
+    
+    for (var i = 0; i < this.state.failed_tasks.length; i++) {
+      var arr =this.state.failed_tasks;
+      arr.push([]);
+      arr[arr.length - 1] = this.state.pending_tasks[i];
+      this.setState({render_tasks: arr});
+    }
+  }
+
+  change() {
+
+  }
+
+
   componentDidMount() {
-    this.getFile();
-    this.getFile();
+    // this.getFile();
+    // this.getFile();
   }
 
 
@@ -100,11 +124,11 @@ export default class App extends React.Component {
     const isLoad = this.state.isLoad;
     let text;
     if (isLoad) {
-      text = this.state.done_tasks[0][1];
+      text = this.state.render_tasks[0][1];
     } else {
       text = "Go to the supermarket"
     }
-    console.log("done_tasks: " + this.state.done_tasks);
+    //console.log("done_tasks: " + this.state.done_tasks);
 
     
 
@@ -140,31 +164,29 @@ export default class App extends React.Component {
     //   );
     // }
     return (
-    <Grid
-      container
-      direction="column"
-      justify="flex-start"
-      alignItems="stretch"
-    >
-      {this.state.done_tasks[0]}
-    </Grid>
+
+
+
+      <Main/>
+
+      // this.state.done_tasks.map((variant, idx) => (
+      //   <Card
+      //   bg="success"
+      //   text="black"
+      //   className="mb-2"
+      //   style={{marginLeft: "auto", marginRight: "auto", marginBottom: "10px", width: '40rem', bg: "green"}}
+      //   >
+      //     <Card.Text style={{fontSize: "40px", textAlign: "center"}}>{variant[1]}</Card.Text>
+      //   </Card>
+      //   )
+      // )
+
       // <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
       //   <div key="one">a</div>
       //   <div key="two">b</div>
       //   <div key="three">c</div>
       //   <div key="test">test</div>
       // </GridLayout>
-      // this.state.done_tasks.map((variant, idx) => (
-      //   <Card
-      //   bg="success"
-      //   text="black"
-      //   className="mb-2"
-      //   style={{ width: '40rem' }}
-      //   >
-      //     <Card.Text style={{fontSize: "40px", textAlign: "center"}}>{variant[1]}</Card.Text>
-      //   </Card>
-      //   )
-      // )
 
       // <div
       // style={{
@@ -176,11 +198,6 @@ export default class App extends React.Component {
       //     Get Data
       //   </button>
 
-
-
-
-
-
       //   <Card
       //     bg="success"
       //     text="black"
@@ -191,36 +208,6 @@ export default class App extends React.Component {
       //   </Card>
       // </div>
 
-     
-      // [
-      //   'Primary',
-      //   'Secondary',
-      //   'Success',
-      //   'Danger',
-      //   'Warning',
-      //   'Info',
-      //   'Light',
-      //   'Dark',
-      // ].map((variant, idx) => (
-      //   <Card
-      //     bg={variant.toLowerCase()}
-      //     key={idx}
-      //     text={variant.toLowerCase() === 'light' ? 'dark' : 'white'}
-      //     style={{ width: '18rem' }}
-      //     className="mb-2"
-      //   >
-      //     <Card.Header>Header</Card.Header>
-      //     <Card.Body>
-      //       <Card.Title>{variant} Card Title </Card.Title>
-      //       <Card.Text>
-      //         Some quick example text to build on the card title and make up the bulk
-      //         of the card's content.
-      //       </Card.Text>
-      //     </Card.Body>
-      //   </Card>
-      // ))
-
-     
     )
   }
 }

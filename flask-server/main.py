@@ -1,7 +1,11 @@
-from flask import (Flask, render_template, request)
+from flask import (Flask, render_template, request, session)
 import json
 
 app = Flask("__main__")
+app.config['SECRET_KEY'] = "gfywchCBCWOHEOPQDWLKFCBACEWUuhiuafhwhuailwkndscsm,mkawrlgjne74385924iprqjefcn824unew"
+
+users = [("gaya", "1")]
+
 
 @app.route("/data",methods=['POST', 'GET'])
 def return_data():
@@ -9,16 +13,26 @@ def return_data():
         data = json.load(json_file)
     return data, 200
 
+@app.route("/verify",methods=['POST', 'GET'])
+def verify():
+    data = request.get_json(force=True)
+
+    username = data["username"]
+    password = data["password"]
+    print(username + " " + password)
+    for user in users:
+        if user[0] == username and user[1] == password:
+            session["username"] = username
+            return {"result": True}, 200
+
+    return {"result": False}, 200
+
 @app.route("/",methods=['POST', 'GET'])
 def my_index():
-    # return [1, 2, 3]
-    # if request.method == 'POST':
-    #   result = [1, 2, 3]
-    #   return render_template("index.html", result = result)
-    # list = ["first", "second"]
-    # return render_template("index.html")
-    # return render_template("index.html", flask_token=[1, 2, 3, 4])
+    return render_template("index.html")
 
-    return render_template("index.html", token="[1, 2, 3, 4]")
+@app.route("/registration",methods=['POST', 'GET'])
+def register():
+    return render_template("index.html")
 
 app.run(debug=True)
