@@ -129,40 +129,6 @@ export default class App extends React.Component {
       text = "Go to the supermarket"
     }
     //console.log("done_tasks: " + this.state.done_tasks);
-
-    
-
-    // const layout = [
-    //   {i: 'one', x: 5, y: 5, w: 10, h: 10, static: true},
-    //   {i: 'two', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-    //   {i: 'three', x: 4, y: 0, w: 1, h: 2}
-    // ];
-    // layout.push({i: 'test', x: 100, y: 200, w: 10, h: 10})
-    // let cards = [];
-    // for (var i = 0; i < this.state.done_tasks; i++) {
-    //   cards.push(
-    //     <Card
-    //     bg="success"
-    //     text="black"
-    //     className="mb-2"
-    //     style={{ width: '40rem' }}
-    //     >
-    //       <Card.Text style={{fontSize: "40px", textAlign: "center"}}>{this.state.done_tasks[i][1]}</Card.Text>
-    //     </Card>
-    //   );
-    // }
-    // for (var i = 0; i < this.state.pending_tasks; i++) {
-    //   cards.push(
-    //     <Card
-    //     bg="success"
-    //     text="black"
-    //     className="mb-2"
-    //     style={{ width: '40rem' }}
-    //     >
-    //       <Card.Text style={{fontSize: "40px", textAlign: "center"}}>{this.state.pending_tasks[i][1]}</Card.Text>
-    //     </Card>
-    //   );
-    // }
     return (
 
 
