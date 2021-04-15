@@ -9,7 +9,7 @@ users = [("gaya", "1")]
 
 @app.route("/data",methods=['POST', 'GET'])
 def return_data():
-    with open('data.json') as json_file:
+    with open('data2.json') as json_file:
         data = json.load(json_file)
     return data, 200
 
@@ -35,4 +35,7 @@ def my_index():
 def register():
     return render_template("index.html")
 
+@app.route("/table",methods=['POST', 'GET'])
+def render_cards():
+    return render_template("index.html")
 app.run(debug=True)

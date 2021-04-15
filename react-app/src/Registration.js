@@ -17,7 +17,7 @@ class Registration extends React.Component {
     postRequest(e) {
         e.preventDefault();
         axios.post("/verify", {"username": this.state.username, "password": this.state.password}
-        ).then((response) => this.setState({check: response.result}));
+        ).then((response) => this.setState({check: response.data.result}));
     }
 
     handleChangeUsername(event) {    
@@ -33,7 +33,7 @@ class Registration extends React.Component {
     console.log(this.state.check);
     if (this.state.check) {
         console.log("ok");
-        return <Redirect to="/"/>
+        return <Redirect to="/table"/>
     }
     return (
     <Card
@@ -42,9 +42,6 @@ class Registration extends React.Component {
             <Form.Group controlId="formBasicUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control value={this.state.username} onChange={this.handleChangeUsername} type="username" placeholder="Enter username" />
-                <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-                </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">

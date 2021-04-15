@@ -1,0 +1,8 @@
+{
+    "tasks": [
+        {"position": "administrator", "name": "Vasya Pupkin", "task_name": "go Shopping", "status": "done"}, 
+        {"position": "administrator", "name": "Masya Pupkin", "task_name": "care about Gaya", "status": "pending"},
+        {"position": "worker", "name": "Pulich", "task_name": "do Homework", "status": "pending"} 
+ 
+    ]
+}
