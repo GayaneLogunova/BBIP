@@ -81,6 +81,7 @@ class Table_render extends React.Component {
           task.push(jsonData.tasks[i].name);
           task.push(jsonData.tasks[i].task_name);
           task.push(jsonData.tasks[i].status);
+          task.push(jsonData.tasks[i].time);
           tasks.push(task);
           task = [];
         }
@@ -95,7 +96,7 @@ class Table_render extends React.Component {
             <div style={{
               width: '100%'
             }}>
-              <Accordion>
+              <Accordion> 
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
@@ -109,10 +110,6 @@ class Table_render extends React.Component {
                 <AccordionDetails style={{width: '100%'
                   }}>
                   <Accordion_render data={this.state.parsed_data} position={"administrator"}/>
-                  <Typography>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                    sit amet blandit leo lobortis eget.
-                  </Typography>
                 </AccordionDetails>
               </Accordion>
             </div>
