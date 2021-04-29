@@ -46,7 +46,7 @@ def my_index():
 def register():
     return render_template("index.html")
 
-@app.route("/table",methods=['POST', 'GET'])
+@app.route("/dashboard",methods=['POST', 'GET'])
 def render_cards():
     return render_template("index.html")
 app.run(debug=True)

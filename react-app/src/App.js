@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import React, {Component} from "react";
-import axios from 'axios'; 
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";

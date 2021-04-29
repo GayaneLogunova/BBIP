@@ -8,12 +8,6 @@ import { useHistory } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexGrow: 1,
     fontSize: 25,
@@ -38,7 +32,6 @@ const defaultProps = {
 export default function NavBar(props) {
 
     function logout() {
-        console.log("button clicked");
         localStorage.setItem("authToken", "false");
         props.funcIsLogged("false");
         history.push("/registration");
