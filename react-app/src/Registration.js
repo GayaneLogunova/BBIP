@@ -3,6 +3,7 @@ import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Card, Form, Button} from "react-bootstrap";
 import { Redirect } from "react-router";
+import Cards_render from "./Cards_render";
 
 class Registration extends React.Component {
 
@@ -29,11 +30,12 @@ class Registration extends React.Component {
     }
 
   render () {
-
-    console.log(this.state.check);
     if (this.state.check) {
         console.log("ok");
-        return <Redirect to="/table"/>
+        localStorage.setItem("authToken", "true");
+        localStorage.setItem("username", this.state.username);
+        this.props.funcIsLogged("true");
+        return <Redirect to="/table" component={Cards_render}/>
     }
     return (
     <Card

@@ -1,8 +1,25 @@
 .accordion-body {
     width: 100%;
-    margin-left: 2%;
+    margin-left: 0%;
     margin-right: 2%;
 }
-.accordion_text {
+
+.accordion-base {
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.done-text {
     color: green;
+}
+.done-background {
+    background-color: green;
+}
+.pending-text {
+    color: #EDE34A
+}
+
+.failed-text {
+    color: red;
 }
