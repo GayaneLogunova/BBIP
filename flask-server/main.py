@@ -3,7 +3,7 @@ import json
 
 app = Flask("__main__")
 app.config['SECRET_KEY'] = "gfywchCBCWOHEOPQDWLKFCBACEWUuhiuafhwhuailwkndscsm,mkawrlgjne74385924iprqjefcn824unew"
-users = [("gaya", "1")]
+users = [("administrator", "1")]
 
 
 @app.route("/data",methods=['POST', 'GET'])
