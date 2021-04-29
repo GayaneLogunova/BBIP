@@ -42,7 +42,6 @@ export default function NavBar(props) {
         localStorage.setItem("authToken", "false");
         props.funcIsLogged("false");
         history.push("/registration");
-        setVisibility("hidden")
     }
 
     const classes = useStyles();

@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, {Component} from "react";
+import React, {Component, useState, useEffect } from "react";
 import axios from 'axios'; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-grid-layout/css/styles.css";
@@ -19,7 +19,6 @@ class Table_render extends React.Component {
     constructor(props) {
         super(props);
         this.state = {data_: [], parsed_data: [["administrator", "Pasha", "say hi", "done"], ["worker", "Katya", "say Bye", "pending"]], username: ""}
-        this.getFile();
       }
     
 
@@ -34,8 +33,21 @@ class Table_render extends React.Component {
       }
 
       componentDidMount() {
-        this.getFile();
+        // this.getFile();
+        try {
+          setInterval(async () => {
+            this.getFile();
+          }, 1000);
+        } catch(e) {
+          console.log(e);
+        }
       }
+
+
+
+      // componentWillUnmount() {
+      //   clearInterval(this.interval);
+      // }
 
       check_thought(object) {
         var jsonData = object;

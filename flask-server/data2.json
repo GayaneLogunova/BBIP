@@ -3,6 +3,7 @@
         {"position": "administrator", "name": "Vasya Pupkin", "task_name": "go Shopping", "status": "done", "time": "9:00"}, 
         {"position": "administrator", "name": "Vasya Pupkin", "task_name": "buy a cat", "status": "done", "time": "11:00"},
         {"position": "administrator", "name": "Masya Pupkin", "task_name": "care about Gaya", "status": "pending", "time": "13:00"},
+        {"position": "administrator", "name": "Masya Pupkin", "task_name": "do kursach", "status": "failed", "time": "13:00"},
         {"position": "worker", "name": "Pulich", "task_name": "do Homework", "status": "pending", "time": "22:00"} 
  
     ]
