@@ -60,7 +60,7 @@ export default function NavBar(props) {
         <div>
         <AppBar position="static">
             <Toolbar>
-              <Typography className={classes.title}> BIG BROTHER ON PRODUCTION </Typography>
+              <Typography className={classes.title}> BIG BROTHER AT THE PRODUCTION </Typography>
               <Button color="inherit">LOGIN</Button>
             </Toolbar>
         </AppBar>
