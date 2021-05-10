@@ -1,39 +1,12 @@
 {
-    "task1": {
-        "state": "done",
-        "text": "Go to the Supermarket",
-        "who": "Professor",
-        "time_limit": "18:00"
-    },
-    "task2": {
-        "state": "done",
-        "text": "Go to the GYM",
-        "who": "Student",
-        "time_limit": "20:00"
-    },        
-    "task3": {
-        "state": "done",
-        "text": "Go to the kindergarden",
-        "who": "mum",
-        "time_limit": "16:00"
-    },
-    "task4": {
-        "state": "pending",
-        "text": "Do homework",
-        "who": "Student",
-        "time_limit": "22:00"
-    },
-    "task5": {
-        "state": "done",
-        "text": "Go to bed",
-        "who": "Professor",
-        "time_limit":"22:00"
-    },
-    "task6": {
-        "state": "failed",
-        "text": "Buy a skirt", 
-        "who": "mum",
-        "time_limit": "16:00"
-        
-    }
+    "tasks": [
+        {"id": "1", "position": "administrator", "name": "Vasya Pupkin", "task_name": "go Shopping", "status": "done", "status_changed": "8:00", "time": "9:00"},
+        {"id": "1", "position": "administrator", "name": "Vasya Pupkin", "task_name": "go Shopping", "status": "pending", "status_changed": "9:00", "time": "10:00"},
+        {"id": "1", "position": "administrator", "name": "Gesus", "task_name": "go Shopping", "status": "failed", "status_changed": "7:00", "time": "8:00"},
+        {"id": "2", "position": "administrator", "name": "Vasya Pupkin", "task_name": "buy a cat", "status": "done", "status_changed": "10:55", "time": "11:00"},
+        {"id": "3", "position": "administrator", "name": "Masya Pupkin", "task_name": "care about Gaya", "status": "pending", "status_changed": "13:00", "time": "13:00"},
+        {"id": "4", "position": "administrator", "name": "Masya Pupkin", "task_name": "do kursach", "status": "failed", "status_changed": "13:00", "time": "13:00"},
+        {"id": "5", "position": "worker", "name": "Pulich", "task_name": "do Homework", "status": "pending", "status_changed": "11:00", "time": "22:00"} 
+ 
+    ]
 }

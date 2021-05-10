@@ -8,7 +8,7 @@ users = [("administrator", "1")]
 
 @app.route("/data",methods=['POST', 'GET'])
 def return_data():
-    with open('data2.json') as json_file:
+    with open('data.json') as json_file:
         data = json.load(json_file)
     return data, 200
 

@@ -6,35 +6,35 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import RenderByName from './RenderByName';
 import './accordion.css';
+import RenderByTitle from "./RenderByTitle";
 
-function NameAccordion(props) {
+function RenderAllTasks(props) {
     var mySet = new Set();
     return (
         <div className="accordion-body">
-            {props.data.map((sent) => {
-                if (sent[1] == props.position && !mySet.has(sent[2])) {
-                    mySet.add(sent[2]);
-                    return ( 
-                        <div>
-                            <Accordion>
+              {props.data.map((sent) => {
+                  if (!mySet.has(sent[1])) {
+                      mySet.add(sent[1]);
+                      return ( 
+                            <Accordion style={{margin: "2%"}}> 
                                 <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
                                 aria-controls="panel1a-content"
                                 id="panel1a-header">
                                     <Typography>
-                                        {sent[2]}
+                                        {sent[1]}
                                     </Typography>
                                 </AccordionSummary>
                                 <AccordionDetails>
-                                    <RenderByName data={props.data} name={sent[2]}/>
+                                <RenderByTitle data={props.data} position={sent[1]}/>
                                 </AccordionDetails>
                             </Accordion>
-                        </div>
-                    );
-                }
-            })}
+                          
+                      );
+                  }
+              })}
         </div>
     );
 }
 
-export default NameAccordion;
+export default RenderAllTasks;

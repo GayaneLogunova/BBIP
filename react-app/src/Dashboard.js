@@ -2,6 +2,7 @@ import './App.css';
 import React from "react";
 import axios from 'axios'; 
 import "bootstrap/dist/css/bootstrap.min.css";
+import {Card, Form, Button} from "react-bootstrap";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
 import Accordion from '@material-ui/core/Accordion';
@@ -11,12 +12,17 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import RenderbyTitle from "./RenderByTitle";
 import "./accordion.css";
-
+import Search from './Search';
+import CircleDiagram from './CircleDiagram';
+import TaskCommits from "./TaskCommits";
+import FailedTasks from "./FailedTasks";
 
 class Table_render extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {data_: [], parsed_data: [["administrator", "Pasha", "say hi", "done"], ["worker", "Katya", "say Bye", "pending"]], username: ""}
+        this.state = {data_: [], parsed_data: [["1", "administrator", "Pasha", "say hi", "done", "14:00", "12:00"], ["2", "worker", "Katya", "say Bye", "failed", "12:00", "10:00"]], username: ""}
+        this.handleChange = this.handleChange.bind(this);
+        this.sort_data = this.sort_data.bind(this);
       }
     
 
@@ -31,13 +37,19 @@ class Table_render extends React.Component {
       }
 
       componentDidMount() {
-        try {
-          setInterval(async () => {
-            this.getFile();
-          }, 1000);
-        } catch(e) {
-          console.log(e);
-        }
+        this.getFile();
+        this.sort_data();
+        // try {
+        //   setInterval(async () => {
+        //     this.getFile();
+        //   }, 1000);
+        // } catch(e) {
+        //   console.log(e);
+        // }
+      }
+
+      handleChange() {
+        this.setState({checkedA: true, checkedB: true});
       }
 
       parse_data(object) {
@@ -45,10 +57,12 @@ class Table_render extends React.Component {
         var task = [];
         var tasks = [];
         for (var i = 0; i < jsonData.tasks.length; i++) {
+          task.push(jsonData.tasks[i].id);
           task.push(jsonData.tasks[i].position);
           task.push(jsonData.tasks[i].name);
           task.push(jsonData.tasks[i].task_name);
           task.push(jsonData.tasks[i].status);
+          task.push(jsonData.tasks[i].status_changed);
           task.push(jsonData.tasks[i].time);
           tasks.push(task);
           task = [];
@@ -56,33 +70,36 @@ class Table_render extends React.Component {
         this.setState({parsed_data: tasks});
       }
 
-      render () {
-        var mySet = new Set();
-        return (
-          <div className="accordion-base">
-
-          {this.state.parsed_data.map((sent) => {
-              if (!mySet.has(sent[0])) {
-                  mySet.add(sent[0]);
-                  return ( 
-                      <div>
-                          <Accordion>
-                              <AccordionSummary
-                              expandIcon={<ExpandMoreIcon />}
-                              aria-controls="panel1a-content"
-                              id="panel1a-header">
-                                  <Typography>
-                                      {sent[0]}
-                                  </Typography>
-                              </AccordionSummary>
-                              <AccordionDetails>
-                                <RenderbyTitle data={this.state.parsed_data} position={sent[0]}/>
-                              </AccordionDetails>
-                          </Accordion>
-                      </div>
-                  );
+      sort_data() {
+        var myDict = {};
+          this.state.parsed_data.map(function(task) {
+              if (myDict[task[0]] == undefined) {
+                  myDict[task[0]] = "status: " + task[4] + "   time: " + task[5] + "#";
               }
-          })}
+              else {
+                  myDict[task[0]] += "status: " + task[4] + "   time: " + task[5] + "#";
+              }
+          })
+        this.setState({dict: myDict});
+      }
+
+      render () {
+        return (
+          <div style={{display: 'flex'}}>
+            <div style={{flex: 'auto', width: "50%", margin: "2%"}}>
+              <Card style={{padding: "5%", textAlign: "center"}}>
+                <h2>Tasks monitor</h2>
+                <Search data={this.state.parsed_data}/>
+              </Card>
+            </div>
+            <div style={{flex: "auto", width: "50%", margin: "2%"}}>
+              <Card style={{padding: "5%", textAlign: "center"}}>
+              <h2>Status monitor</h2>
+                <CircleDiagram data={this.state.parsed_data}/>
+                <TaskCommits data={this.state.parsed_data}/>
+                <FailedTasks data={this.state.parsed_data}/>
+              </Card>
+            </div>
           </div>
         )
       }
