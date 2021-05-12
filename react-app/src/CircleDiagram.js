@@ -26,9 +26,6 @@ class CircleDiagram extends React.Component {
 
         var options = {
 			animationEnabled: true,
-			//title: {
-			//	text: "Tasks traffic"
-			//},
 			data: [{
 				type: "pie",
 				startAngle: 75,

@@ -2,15 +2,9 @@ import './App.css';
 import React from "react";
 import axios from 'axios'; 
 import "bootstrap/dist/css/bootstrap.min.css";
-import {Card, Form, Button} from "react-bootstrap";
+import {Card} from "react-bootstrap";
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import RenderbyTitle from "./RenderByTitle";
 import "./accordion.css";
 import Search from './Search';
 import CircleDiagram from './CircleDiagram';
@@ -20,8 +14,7 @@ import FailedTasks from "./FailedTasks";
 class Table_render extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {data_: [], parsed_data: [["1", "administrator", "Pasha", "say hi", "done", "14:00", "12:00"], ["2", "worker", "Katya", "say Bye", "failed", "12:00", "10:00"]], username: ""}
-        this.handleChange = this.handleChange.bind(this);
+        this.state = {data_: [], parsed_data: [["1", "administrator", "Pasha", "say hi", "done", "14:00", "12:00"], ["2", "worker", "Katya", "say Bye", "failed", "12:00", "10:00"]]};
         this.sort_data = this.sort_data.bind(this);
       }
     
@@ -32,26 +25,26 @@ class Table_render extends React.Component {
         return axios.post(url, formData);
       }
     
-      getFile() { 
-        this.postRequest().then((result) => {this.setState({data_: result.data});}).then(() => {this.parse_data(this.state.data_)});
+      async getFile() { 
+        // this.postRequest().then((result) => {this.setState({data_: result.data});}).then(() => {this.parse_data(this.state.data_)});
+        var result = await this.postRequest();
+        if (result.data.new == "true") {
+          this.parse_data(result.data);
+        }
       }
 
-      componentDidMount() {
-        this.getFile();
+      async componentDidMount() {
+        await this.getFile();
         this.sort_data();
-        // try {
-        //   setInterval(async () => {
-        //     this.getFile();
-        //   }, 1000);
-        // } catch(e) {
-        //   console.log(e);
-        // }
+        try {
+          setInterval(async () => {
+            await this.getFile();
+          }, 1000);
+        } catch(e) {
+          console.log(e);
+        }
       }
-
-      handleChange() {
-        this.setState({checkedA: true, checkedB: true});
-      }
-
+      
       parse_data(object) {
         var jsonData = object;
         var task = [];

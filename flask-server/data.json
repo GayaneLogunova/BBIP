@@ -1,4 +1,5 @@
-{
+{   
+    "new": "true",
     "tasks": [
         {"id": "1", "position": "administrator", "name": "Vasya Pupkin", "task_name": "go Shopping", "status": "done", "status_changed": "8:00", "time": "9:00"},
         {"id": "1", "position": "administrator", "name": "Vasya Pupkin", "task_name": "go Shopping", "status": "pending", "status_changed": "9:00", "time": "10:00"},
@@ -6,7 +7,8 @@
         {"id": "2", "position": "administrator", "name": "Vasya Pupkin", "task_name": "buy a cat", "status": "done", "status_changed": "10:55", "time": "11:00"},
         {"id": "3", "position": "administrator", "name": "Masya Pupkin", "task_name": "care about Gaya", "status": "pending", "status_changed": "13:00", "time": "13:00"},
         {"id": "4", "position": "administrator", "name": "Masya Pupkin", "task_name": "do kursach", "status": "failed", "status_changed": "13:00", "time": "13:00"},
-        {"id": "5", "position": "worker", "name": "Pulich", "task_name": "do Homework", "status": "pending", "status_changed": "11:00", "time": "22:00"} 
- 
+        {"id": "5", "position": "worker", "name": "Pulich", "task_name": "do Homework", "status": "pending", "status_changed": "11:00", "time": "22:00"},
+        {"id": "6", "position": "worker", "name": "Zuzu", "task_name": "do Homework", "status": "failed", "status_changed": "11:00", "time": "22:00"}  
+
     ]
 }

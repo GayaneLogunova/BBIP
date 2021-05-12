@@ -25,12 +25,10 @@ class FailedTasks extends React.Component {
             mySecond = "0" + second;
         }
         if (myFirst > mySecond) {
-            console.log("first > second: " + first[5] + " " + second[5]);
-            return -1;
+            return 1;
         }
         else {
-            console.log("second > first: " + first[5] + " " + second[5]);
-            return 1;
+            return -1;
         }
     }
 
